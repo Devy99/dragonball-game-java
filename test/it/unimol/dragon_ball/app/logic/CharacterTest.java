@@ -1,5 +1,6 @@
 package it.unimol.dragon_ball.app.logic;
 
+
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
@@ -7,7 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class CharacterTest {
     private Character character;
@@ -15,7 +17,7 @@ class CharacterTest {
     CharacterTest() {
         character = null;
 
-        String propertiesFilepath = "resources/file_properties/goku.properties";
+        String propertiesFilepath = "res/resources/file_properties/goku.properties";
 
         try (InputStream inputStream1 = new FileInputStream(propertiesFilepath)) {
             Properties characterProperties = new Properties();
