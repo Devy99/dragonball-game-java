@@ -90,11 +90,12 @@ public class GuiHandler {
     public void stopBackgroundMusic() {
         assert mainBackgroundMusicClip != null;
 
+        /*
         try {
             ResourcesHandler.getInstance().stopMusic(mainBackgroundMusicClip);
         } catch (SoundException e) {
             e.printStackTrace();
-        }
+        }*/
 
         this.mainBackgroundMusicActive = false;
     }
@@ -205,7 +206,7 @@ public class GuiHandler {
             panel.repaint();
 
             if (!this.buttonSelectionSoundActive) {
-                this.startButtonSelectionSound();
+                //this.startButtonSelectionSound();
                 this.buttonSelectionSoundActive = true;
             }
         }

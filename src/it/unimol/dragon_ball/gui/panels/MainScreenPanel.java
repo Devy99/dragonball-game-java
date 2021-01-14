@@ -45,8 +45,8 @@ public class MainScreenPanel extends JPanel {
         initButtons();
         initListeners();
 
-        if (!GuiHandler.getInstance().isMainBackgroundMusicActive())
-            initBackgroundMusic();
+        //if (!GuiHandler.getInstance().isMainBackgroundMusicActive())
+            //initBackgroundMusic();
     }
 
 

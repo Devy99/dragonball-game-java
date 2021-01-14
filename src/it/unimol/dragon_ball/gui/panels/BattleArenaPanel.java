@@ -85,7 +85,7 @@ public class BattleArenaPanel extends JPanel {
 
     public BattleArenaPanel() {
         initPanel();
-        initBackgroundMusic();
+       // initBackgroundMusic();
     }
 
     private void initBackgroundMusic() {
@@ -118,11 +118,13 @@ public class BattleArenaPanel extends JPanel {
 
     private void stopBackgroundMusic() {
         assert this.backgroundMusicClip != null;
+        /*
         try {
             ResourcesHandler.getInstance().stopMusic(backgroundMusicClip);
         } catch (SoundException ignored) {
 
         }
+        */
     }
 
     private void initPanel() {
@@ -272,7 +274,7 @@ public class BattleArenaPanel extends JPanel {
                     player2Sprite.setActiveSprite(player2Sprite.getIdle());
 
                 if (!GameController.getInstance().isGameActive() && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    stopBackgroundMusic();
+                    //stopBackgroundMusic();
                     MainFrame.getInstance().switchPanel(MainFrame.MAIN_SCREEN_PANEL);
                 }
 
@@ -300,6 +302,7 @@ public class BattleArenaPanel extends JPanel {
             this.repaint();
 
             Thread winnerSoundThread = new Thread(() -> {
+                /*
                 try {
                     ResourcesHandler.getInstance().playMusic("/resources/sounds/battle_sounds/WinnerSound.wav", 0);
                 } catch (ResourceException ignored) {
@@ -316,10 +319,11 @@ public class BattleArenaPanel extends JPanel {
                 else if (winnerName.equals("player2"))
                     winnerCharacter = player2;
 
+                /*
                 try {
                     ResourcesHandler.getInstance().playMusic("/resources/sounds/battle_sounds/" + winnerCharacter.getCanonicalName() + "WinnerSound.wav", 0);
                 } catch (ResourceException ignored) {
-                }
+                }*/
             });
             winnerSoundThread.start();
 
@@ -362,10 +366,11 @@ public class BattleArenaPanel extends JPanel {
                     playerSprite.setIsAnimationActive(true);
                     playerSprite.setAuraActive(true);
                     playerSprite.showAuraCharge();
+                    /*
                     try {
                         ResourcesHandler.getInstance().playAnimationMusic("/resources/sounds/battle_sounds/Aura.wav", 0, playerSprite.getIsAnimationActive());
                     } catch (ResourceException ignored) {
-                    }
+                    }*/
                 }
 
                 player.setAura(player.getAura() + 1);
@@ -381,10 +386,12 @@ public class BattleArenaPanel extends JPanel {
                     playerSprite.getSkillSprites().get(Skill.PUNCH).run();
                 }
 
+                /*
                 try {
                     ResourcesHandler.getInstance().playMusic("/resources/sounds/battle_sounds/VoidPunches.wav", 0);
                 } catch (ResourceException ignored) {
                 }
+                */
 
                 playerSprite.setPunchActive(true);
 
@@ -400,9 +407,10 @@ public class BattleArenaPanel extends JPanel {
                         player.setActualMP(player.getActualMP() - player.getSkills().get(Skill.ENERGYBALL).getMana());
                         playerSprite.setIsAnimationActive(true);
                         playerSprite.getSkillSprites().get(Skill.ENERGYBALL).run();
-                        handleEnergyballSound(player);
+                       // handleEnergyballSound(player);
                     }
                 } catch (NotEnoughManaException e) {
+                    /*
                     if (isFirstErrorSound) {
                         try {
                             ResourcesHandler.getInstance().playMusic("/resources/sounds/sounds_effects/ManaError.wav", 0);
@@ -418,6 +426,7 @@ public class BattleArenaPanel extends JPanel {
                         } catch (ResourceException ignored) {
                         }
                     }
+                    */
                 }
 
             } else if (booleans.get(SPECIAL_SKILL).get()) {
@@ -427,10 +436,11 @@ public class BattleArenaPanel extends JPanel {
                         player.setActualMP(player.getActualMP() - player.getSkills().get(Skill.SPECIAL_SKILL).getMana());
                         playerSprite.setIsAnimationActive(true);
                         playerSprite.getSkillSprites().get(Skill.SPECIAL_SKILL).run();
-                        handleSpecialSkillSound(player);
+                        //handleSpecialSkillSound(player);
                     }
 
                 } catch (NotEnoughManaException e) {
+                    /*
                     if (isFirstErrorSound) {
                         try {
                             ResourcesHandler.getInstance().playMusic("/resources/sounds/sounds_effects/ManaError.wav", 0);
@@ -446,6 +456,7 @@ public class BattleArenaPanel extends JPanel {
                         } catch (ResourceException ignored) {
                         }
                     }
+                    */
                 }
 
             } else if (booleans.get(ULTIMATE_SKILL).get()) {
@@ -455,10 +466,11 @@ public class BattleArenaPanel extends JPanel {
                         player.setActualMP(player.getActualMP() - player.getSkills().get(Skill.ULTIMATE_SKILL).getMana());
                         playerSprite.setIsAnimationActive(true);
                         playerSprite.getSkillSprites().get(Skill.ULTIMATE_SKILL).run();
-                        handleUltimateSkillSound(player);
+                        //handleUltimateSkillSound(player);
                     }
 
                 } catch (NotEnoughManaException e) {
+                    /*
                     if (isFirstErrorSound) {
                         try {
                             ResourcesHandler.getInstance().playMusic("/resources/sounds/sounds_effects/ManaError.wav", 0);
@@ -474,6 +486,7 @@ public class BattleArenaPanel extends JPanel {
                         } catch (ResourceException ignored) {
                         }
                     }
+                    */
                 }
             }
         }
@@ -567,10 +580,11 @@ public class BattleArenaPanel extends JPanel {
                     boolean isPlayer1UltimateSkillNotCollided = !player1Sprite.getSkillSprites().get(Skill.ULTIMATE_SKILL).isUltimateSkillCollided();
 
                     if (arePlayersColliding.get() && player1Sprite.isPunchActive()) {
+                        /*
                         try {
                             ResourcesHandler.getInstance().playMusic("/resources/sounds/battle_sounds/VoidPunches.wav", 0);
                         } catch (ResourceException ignored) {
-                        }
+                        }*/
 
                         player2.setActualHP(player2.getActualHP() - player1.getSkills().get(Skill.PUNCH).getDamageDealt());
                         player2Sprite.showDamageByPunches(player2PunchDamageAnimation);
@@ -581,19 +595,19 @@ public class BattleArenaPanel extends JPanel {
                         }
 
                     } else if (hasPlayer1EnergyballHitPlayer2 && player1Sprite.isEnergyballActive() && isPlayer1EnergyballNotCollided) {
-                        startCollisionSound();
+                        //startCollisionSound();
                         player1Sprite.getSkillSprites().get(Skill.ENERGYBALL).setEnergyballCollided(true);
                         player2.setActualHP(player2.getActualHP() - player1.getSkills().get(Skill.ENERGYBALL).getDamageDealt());
                         player2Sprite.showDamageBySkill();
 
                     } else if (hasPlayer1SpecialSkillHitPlayer2 && player1Sprite.isSpecialSkillActive() && isPlayer1SpecialSkillNotCollided) {
-                        startCollisionSound();
+                        //startCollisionSound();
                         player1Sprite.getSkillSprites().get(Skill.SPECIAL_SKILL).setSpecialSkillCollided(true);
                         player2.setActualHP(player2.getActualHP() - player1.getSkills().get(Skill.SPECIAL_SKILL).getDamageDealt());
                         player2Sprite.showDamageBySkill();
 
                     } else if (hasPlayer1UltimateSkillHitPlayer2 && player1Sprite.isUltimateSkillActive() && isPlayer1UltimateSkillNotCollided) {
-                        startCollisionSound();
+                        //startCollisionSound();
                         player1Sprite.getSkillSprites().get(Skill.ULTIMATE_SKILL).setUltimateSkillCollided(true);
                         player2.setActualHP(player2.getActualHP() - player1.getSkills().get(Skill.ULTIMATE_SKILL).getDamageDealt());
                         player2Sprite.showDamageBySkill();
@@ -614,10 +628,11 @@ public class BattleArenaPanel extends JPanel {
                         player1.setActualHP(player1.getActualHP() - player2.getSkills().get(Skill.PUNCH).getDamageDealt());
                         player1Sprite.showDamageByPunches(player1PunchDamageAnimation);
 
+                        /*
                         try {
                             ResourcesHandler.getInstance().playMusic("/resources/sounds/battle_sounds/VoidPunches.wav", 0);
                         } catch (ResourceException ignored) {
-                        }
+                        }*/
 
                         try {
                             Thread.sleep(80);
@@ -628,19 +643,19 @@ public class BattleArenaPanel extends JPanel {
                         player2Sprite.getSkillSprites().get(Skill.ENERGYBALL).setEnergyballCollided(true);
                         player1.setActualHP(player1.getActualHP() - player2.getSkills().get(Skill.ENERGYBALL).getDamageDealt());
                         player1Sprite.showDamageBySkill();
-                        startCollisionSound();
+                       // startCollisionSound();
 
                     } else if (hasPlayer2SpecialSkillHitPlayer1 && player2Sprite.isSpecialSkillActive() && isPlayer2SpecialSkillNotCollided) {
                         player2Sprite.getSkillSprites().get(Skill.SPECIAL_SKILL).setSpecialSkillCollided(true);
                         player1.setActualHP(player1.getActualHP() - player2.getSkills().get(Skill.SPECIAL_SKILL).getDamageDealt());
                         player1Sprite.showDamageBySkill();
-                        startCollisionSound();
+                        //startCollisionSound();
 
                     } else if (hasPlayer2UltimateSkillHitPlayer1 && player2Sprite.isUltimateSkillActive() && isPlayer2UltimateSkillNotCollided) {
                         player1.setActualHP(player1.getActualHP() - player2.getSkills().get(Skill.ULTIMATE_SKILL).getDamageDealt());
                         player1Sprite.showDamageBySkill();
                         player2Sprite.getSkillSprites().get(Skill.ULTIMATE_SKILL).setUltimateSkillCollided(true);
-                        startCollisionSound();
+                       // startCollisionSound();
                     }
 
                     try {
@@ -680,21 +695,21 @@ public class BattleArenaPanel extends JPanel {
                     if (hasPlayer1EnergyballHitPlayer2Energyball && isPlayer1EnergyballNotCollided && isPlayer2EnergyballNotCollided) {
                         player1Sprite.getSkillSprites().get(Skill.ENERGYBALL).setEnergyballCollided(true);
                         player2Sprite.getSkillSprites().get(Skill.ENERGYBALL).setEnergyballCollided(true);
-                        startCollisionSound();
+                        //startCollisionSound();
                     } else if (((player2Sprite.isSpecialSkillActive() && hasPlayer1EnergyballHitPlayer2SpecialSkill) || (player2Sprite.isUltimateSkillActive() && hasPlayer1EnergyballHitPlayer2UltimateSkill)) && isPlayer1EnergyballNotCollided) {
                         player1Sprite.getSkillSprites().get(Skill.ENERGYBALL).setEnergyballCollided(true);
-                        startCollisionSound();
+                       // startCollisionSound();
                     } else if (((player1Sprite.isSpecialSkillActive() && hasPlayer2EnergyballHitPlayer1SpecialSkill) || (player1Sprite.isUltimateSkillActive() && hasPlayer2EnergyballHitPlayer1UltimateSkill)) && isPlayer2EnergyballNotCollided) {
                         player2Sprite.getSkillSprites().get(Skill.ENERGYBALL).setEnergyballCollided(true);
-                        startCollisionSound();
+                        //startCollisionSound();
                     } else if (hasPlayer1SpecialSkillHitPlayer2SpecialSkill && isPlayer1SpecialSkillNotCollided && isPlayer2SpecialSkillNotCollided) {
                         player1Sprite.getSkillSprites().get(Skill.SPECIAL_SKILL).setSpecialSkillCollided(true);
                         player2Sprite.getSkillSprites().get(Skill.SPECIAL_SKILL).setSpecialSkillCollided(true);
-                        startCollisionSound();
+                        //startCollisionSound();
                     } else if (hasPlayer1UltimateSkillHitPlayer2UltimateSkill && isPlayer1UltimateSkillNotCollided && isPlayer2UltimateSkillNotCollided) {
                         player1Sprite.getSkillSprites().get(Skill.ULTIMATE_SKILL).setUltimateSkillCollided(true);
                         player2Sprite.getSkillSprites().get(Skill.ULTIMATE_SKILL).setUltimateSkillCollided(true);
-                        startCollisionSound();
+                        //startCollisionSound();
                     }
 
                 }
